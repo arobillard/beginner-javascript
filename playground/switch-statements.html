@@ -3,15 +3,25 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta content="width=device-width,initial-scale=1.0" name="viewport">
   <title></title>
-  <link rel="stylesheet" href="../base.css">
+  <link href="../base.css" rel="stylesheet">
 </head>
 
-
 <body>
-  <img width="200" src="./turtle.png" alt="Turt" class="turt">
-
+  <style>
+    .turt {
+      position: relative;
+      --x: 0;
+      --y: 0;
+      --flipped: 0;
+      --rotate: 0;
+      transform: translate(var(--x), var(--y)) rotateY(var(--flipped)) rotate(var(--rotate));
+      transition: transform .2s;
+    }
+  </style>
+  <img alt="Turt" class="turt" src="./turtle.png" width="200" />
+  <script src="switch-statements.js"></script>
 </body>
 
 </html>

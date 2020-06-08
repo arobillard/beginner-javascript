@@ -3,35 +3,29 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta content="width=device-width,initial-scale=1.0" name="viewport">
   <title>If Statements</title>
-  <link rel="stylesheet" href="../base.css">
+  <link href="../base.css" rel="stylesheet">
 </head>
 
 <body>
   * empty array
   * empty object
-  * 1
-  * -10
+
+  <h2>Truthy</h2>
   * full string
+  * -10
+  * 1
   * a string of "0"
+
+  <h2>Falsey</h2>
+  * Variable set to null
   * 0
   * undefined variable
-  * Variable set to null
   * a variable set to `"hello" - 10` NaN
   * empty string
 
-  <script>
-
-    function slugify(sentence, lowercase) {
-      let slug = sentence.replace(/\s/g, '-');
-      if (lowercase) {
-        return slug.toLowerCase();
-      }
-      return slug;
-    }
-
-  </script>
+  <script src="if-statements.js"></script>
 </body>
 
 </html>

@@ -10,13 +10,23 @@
 
 <body>
   <script>
+    // 'use strict'; // will require the car/let/const when declaring variables
     // function scoped
-    var first = 'wes';
+    var first = 'wes'; // variable declaration statement
+    console.log(first)
     // block scoped
     let age = 300;
-    let cool = true;
+    const cool = true;
 
-    const Dog = 'bowser';
+    if (age > 10) {
+      console.log('sup oldie')
+    }
+
+    // var first = "westerhoff";  // don't add the 'var' when updating
+    first = "westerhoff";
+
+    var dog = 'bowser';
+    dog = 'snookums';
 
     // camel case
     const iLovePizza = true;
