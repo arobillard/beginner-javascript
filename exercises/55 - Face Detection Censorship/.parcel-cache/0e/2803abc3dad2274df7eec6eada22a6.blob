@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Censorship</title>
+  <link rel="stylesheet" href="/base.HASH_REF_80e90ad66a35bcdfbc94af120def0769.css">
+  <style>* {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    .wrap {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .wrap>* {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+
+    .face {
+      position: absolute;
+    }
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJtYXBwaW5ncyI6IkFBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBIiwic291cmNlcyI6WyIuL2ZhY2UuaHRtbCJdLCJuYW1lcyI6W10sInZlcnNpb24iOjMsImZpbGUiOiJmYWNlLkhBU0hfUkVGX2Q3OWIyYThkMTMzYWJhMzdjMTRmOTgxM2MyMjNlMmJmLmNzcy5tYXAiLCJzb3VyY2VSb290IjoiL19fcGFyY2VsX3NvdXJjZV9yb290LyJ9 */
+</style>
+</head>
+
+<body>
+  <div class="controls">
+    <label for="SCALE">
+      SCALE:
+      <input value="1.35" type="range" name="SCALE" min="0.3" max="3" step="0.1">
+    </label>
+    <label for="SIZE">
+      SIZE:
+      <input value="10" type="range" name="SIZE" min="1" max="100" step="1">
+    </label>
+    <p>pooopyskajhasd</p>
+  </div>
+  <div class="wrap">
+    <video class="webcam"></video>
+    <canvas class="video"></canvas>
+    <canvas class="face"></canvas>
+  </div>
+  <script src="/pixelated-face.HASH_REF_790bd790aa4aea528b911ed289cebdc5.js"></script>
+
+
+</body>
+
+</html>
