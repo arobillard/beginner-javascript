@@ -194,4 +194,14 @@ console.log(over40);
 
 const student = students.find(stud => stud.id === '565a');
 console.log(student);
+
 // Reduce
+console.clear();
+function tallyNumbers(tally, currentTotal) {
+  console.log(`The current tally is ${tally}`);
+  console.log(`The current total is ${currentTotal}`);
+  console.log('------------------')
+  return tally + currentTotal;
+}
+
+const allOrders = orderTotals.reduce(tallyNumbers, 0);
