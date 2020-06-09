@@ -198,10 +198,25 @@ console.log(student);
 // Reduce
 console.clear();
 function tallyNumbers(tally, currentTotal) {
-  console.log(`The current tally is ${tally}`);
-  console.log(`The current total is ${currentTotal}`);
-  console.log('------------------')
+  // console.log(`The current tally is ${tally}`);
+  // console.log(`The current total is ${currentTotal}`);
+  // console.log('------------------');
   return tally + currentTotal;
 }
 
 const allOrders = orderTotals.reduce(tallyNumbers, 0);
+console.log(allOrders);
+
+function inventoryReducer(totals, item) {
+  console.log(`looping over ${item.type}`);
+  // Increment the type by 1
+  totals[item.type] = totals[item.type] + 1 || 1;
+  // return totals so next loop can use it
+  return totals;
+}
+
+const inventoryCounts = inventory.reduce(inventoryReducer, {});
+console.log(inventoryCounts);
+
+const totalInventoryPrice = inventory.reduce((acc, item) => acc + item.price, 0);
+console.log(totalInventoryPrice);
