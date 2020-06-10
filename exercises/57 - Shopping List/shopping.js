@@ -2,7 +2,7 @@ const shoppingForm = document.querySelector('.shopping');
 const list = document.querySelector('.list');
 
 // array to hold our state
-const items = [];
+let items = [];
 
 function handleSubmit(e) {
   e.preventDefault();
@@ -11,8 +11,8 @@ function handleSubmit(e) {
   const item = {
     name,
     id: Date.now(),
-    complete: false
-  }
+    complete: false,
+  };
   // push to state
   items.push(item);
   // clear form
@@ -23,13 +23,15 @@ function handleSubmit(e) {
 
 function displayItems() {
   console.log(items);
-  const html = items.map(
-    item => `<li class="shopping-item">
-      <input type="checkbox">
+  const html = items
+    .map(
+      item => `<li class="shopping-item">
+      <input type="checkbox" value="${item.id}" ${item.complete ? 'checked' : ''}>
       <span class="itemName">${item.name}</span>
-      <button aria-label="Remove ${item.name}">&times;</button>
+      <button value="${item.id}" aria-label="Remove ${item.name}">&times;</button>
     </li>`
-  ).join('');
+    )
+    .join('');
   list.innerHTML = html;
 }
 
@@ -38,6 +40,43 @@ function mirrorToLocalStorage() {
   localStorage.setItem('items', JSON.stringify(items));
 }
 
+function restoreFromLocalStorage() {
+  // pull from LS
+  const lsItems = JSON.parse(localStorage.getItem('items'));
+  if (lsItems.length) {
+    items.push(...lsItems);
+  }
+  list.dispatchEvent(new CustomEvent('itemsUpdated'));
+}
+
+function deleteItem(id) {
+  console.log('deleting');
+  console.log(id);
+  // update items array and remove id
+  items = items.filter(item => item.id !== id);
+  console.log(items);
+  list.dispatchEvent(new CustomEvent('itemsUpdated'));
+}
+
+function markAsComplete(id) {
+  console.log('marking as complete', id);
+  const itemRef = items.find(item => item.id === id);
+  itemRef.complete = !itemRef.complete;
+  list.dispatchEvent(new CustomEvent('itemsUpdated'));
+}
+
 shoppingForm.addEventListener('submit', handleSubmit);
 list.addEventListener('itemsUpdated', displayItems);
 list.addEventListener('itemsUpdated', mirrorToLocalStorage);
+// event delegation, listen for click on list UL but delegate click to the button if button is clicked
+list.addEventListener('click', function(e) {
+  console.log(e.target, e.currentTarget);
+  const id = parseInt(e.target.value);
+  if (e.target.matches('button')) {
+    deleteItem(id);
+  }
+  if (e.target.matches('input[type="checkbox"]')) {
+    markAsComplete(id);
+  }
+});
+restoreFromLocalStorage();
