@@ -80,3 +80,7 @@ list.addEventListener('click', function(e) {
   }
 });
 restoreFromLocalStorage();
+
+// 1, 2, 5-6, 11, 36-37
+// stories
+// 12, 15, 17, 27, 35, 38, 42, 47
