@@ -29,8 +29,32 @@
 //   }, 500)
 // }
 
-console.log('starting');
-setTimeout(function() {
-  console.log('Running');
-}, 2000);
-console.log('ending');
+// console.log('starting');
+// setTimeout(function() {
+//   console.log('Running');
+// }, 2000);
+// console.log('ending');
+
+const go = document.querySelector('.go');
+
+go.addEventListener('click', function(e) {
+  const el = e.currentTarget;
+  el.textContent = 'GO!';
+  console.log(el);
+  setTimeout(function() {
+    el.classList.add('circle');
+    setTimeout(function() {
+      el.classList.add('red');
+      setTimeout(function() {
+        el.classList.remove('circle');
+        setTimeout(function() {
+          el.classList.remove('red');
+          el.classList.add('purple');
+          setTimeout(function() {
+            el.classList.add('fadeOut');
+          }, 500);
+        }, 300);
+      }, 250);
+    }, 500);
+  }, 2000);
+});

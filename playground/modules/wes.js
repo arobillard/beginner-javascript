@@ -3,10 +3,11 @@ const person = {
   last: 'Bos',
 };
 
+// Default export, only allowed one
 export default person;
 
 export const dog = 'Snickers';
 export const food = 'pizza';
 export function eat() {
-  console.log('chomp chomp');
+  console.log('chomp chomp!');
 }

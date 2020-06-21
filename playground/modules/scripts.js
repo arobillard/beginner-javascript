@@ -1,4 +1,4 @@
-import first, { returnHi as sayHi, last, middle } from './utils.js';
+import first, { returnHi as sayHi, last } from './utils.js';
 import * as everything from './wes.js';
 import { handleButtonClick } from './handlers.js';
 

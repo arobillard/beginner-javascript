@@ -5,7 +5,7 @@ function wait(ms = 0) {
 async function destroyPopup(popup) {
   popup.classList.remove('open');
   await wait(1000);
-  // remove the popup entirely!
+  // remove popup
   popup.remove();
   /* eslint-disable no-param-reassign */
   popup = null;
@@ -14,27 +14,26 @@ async function destroyPopup(popup) {
 
 function ask(options) {
   return new Promise(async function(resolve) {
-    // First we need to create a popup with all the fields in it
+    // 1 create pop-up with fields
     const popup = document.createElement('form');
     popup.classList.add('popup');
     popup.insertAdjacentHTML(
       'afterbegin',
       `<fieldset>
         <label>${options.title}</label>
-        <input type="text" name="input"/>
+        <input type="text" name="input" />
         <button type="submit">Submit</button>
       </fieldset>
     `
     );
-
-    // check if they want a cancel button
+    console.log(popup);
+    // 2 check if they want a cancel
     if (options.cancel) {
       const skipButton = document.createElement('button');
       skipButton.type = 'button';
       skipButton.textContent = 'Cancel';
-      console.log(popup.firstChild);
       popup.firstElementChild.appendChild(skipButton);
-      // TODO: listen for a click on that cancel button
+      // TODO: listen for a click on cancel
       skipButton.addEventListener(
         'click',
         function() {
@@ -44,38 +43,33 @@ function ask(options) {
         { once: true }
       );
     }
-    // listen for the submit event on the inputs
+    // 3 Listen for submit
     popup.addEventListener(
       'submit',
       function(e) {
         e.preventDefault();
-        console.log('SUBMITTED');
+        console.log('submitted');
         resolve(e.target.input.value);
-        // remove it from the DOM entirely
+        // remove from DOM
         destroyPopup(popup);
       },
       { once: true }
     );
-    // when someone does submit it, resolve the data that was in the input box!
+    // 4 when submit, resolve data in input box
 
-    // insert that popup into the DOM
+    // insert popup in dom
     document.body.appendChild(popup);
-    // put a very small timeout before we add the open class
-
+    // put a very small timeout
     await wait(50);
     popup.classList.add('open');
   });
 }
 
-// select all button that have a question
+// select all btns
 async function askQuestion(e) {
   const button = e.currentTarget;
   const cancel = 'cancel' in button.dataset;
-
-  const answer = await ask({
-    title: button.dataset.question,
-    cancel,
-  });
+  const answer = await ask({ title: button.dataset.question, cancel });
   console.log(answer);
 }
 
@@ -85,17 +79,17 @@ buttons.forEach(button => button.addEventListener('click', askQuestion));
 const questions = [
   { title: 'What is your name?' },
   { title: 'What is your age?', cancel: true },
-  { title: 'What is your dogs name?' },
+  { title: "What is your dog's name?" },
 ];
 
 async function asyncMap(array, callback) {
-  // make an array to store our results
+  // make an array to store results
   const results = [];
-  // loop over our array
+  // loop over array
   for (const item of array) {
     results.push(await callback(item));
   }
-  // when we are done the loop, return it!
+  // when done loop
   return results;
 }
 
@@ -103,14 +97,8 @@ async function go() {
   const answers = await asyncMap(questions, ask);
   console.log(answers);
 }
-
 go();
 
-// async function askMany() {
-//   for (const question of questions) {
-//     const answer = await ask(question);
-//     console.log(answer);
-//   }
-// }
-
-// askMany();
+// Promise.all([ask(questions[0]), ask(questions[1]), ask(questions[2])]).then(answers => {
+//   console.log(answers);
+// }); // they all happen at once which ain't what we want

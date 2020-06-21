@@ -1,10 +1,13 @@
 const last = 'bos';
 const middle = 'slam dunk';
 
-export function returnHi(name) {
-  return `hi ${name} ${last}`;
+function returnHi(name) {
+  return `Hi ${name} ${last}!`;
 }
+
 const first = 'wes';
-// NAMED exports - we can have as many as we want
-export { last, middle };
+
+// named exports - as many as you want
+export { last, middle, returnHi };
+// Default export - only one
 export default first;
